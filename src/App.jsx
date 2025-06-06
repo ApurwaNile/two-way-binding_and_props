@@ -5,12 +5,14 @@ const App = () => {
     { id: 1, title: "do work", isCompleted: false },
   ]);
   const [title, settitle] = useState("");
-  console.log(title);
+console.log(title);
+
 const sumitHandler = (e) => {
   e.preventDefault();
-  if (title.trim() === "") {
-    alert("Please enter a title");
-    return;
+  const newtodo={
+    id: title,
+    isCompleted: false,
+  }
   }
 
   return (
@@ -36,5 +38,5 @@ const sumitHandler = (e) => {
     </div>
   );
 };
-}
+
 export default App;
