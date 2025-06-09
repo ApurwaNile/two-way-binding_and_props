@@ -1,41 +1,51 @@
 
-import React, { useState } from 'react';
-export const Create = (props) => {
-  console.log(props);
+import {useState} from 'react'
+import { nanoid } from "nanoid"; // Import nanoid for unique IDs
 
-  const [fullname, setfullname] = useState("");
-  
+const Create = (props) => {
+const todos = props.todos;
+const settodos = props.settodos;
 
+  const [title, settitle] = useState("");
   const submitHandler = (e) => {
     e.preventDefault();
-    const newuser = { fullname, Age };
-    console.log(newuser);
-  };
 
-  const [Age, setAge] = useState(18);
+    const newtodo = {
+      id: nanoid(),
+      title: title,
+      isCompleted: false,
+    };
+
+  //   let copytodos = [...todos];
+  //   copytodos.push(newtodo);
+  //   settodos(copytodos);
   
+  settodos([...todos, newtodo]);
+    settitle(""); // Clear the input field after submission
+    console.log(copytodos);
+  };
 
   return (
     <div>
-      <h1>Register Users</h1>
-      <form onSubmit={submitHandler}>
+          <h1>Create task</h1>
+      <br />
+    
+       <form onSubmit={submitHandler}>
         <input
-          onChange={(e) =>setfullname(e.target.value)}
-          value={fullname}
+          onChange={(e) => settitle(e.target.value)}
+          value={title}
           type="text"
-          placeholder="First Name"
+          placeholder="title"
         />
+        <br />
+        <br />
 
-        <input
-          onChange={(e) => setAge(e.target.value)}
-          value={Age}
-          type="number"
-          placeholder="Age"
-        />
-
-        <button type="submit">Submit</button>
+        <button type="submit">Create todo</button>
+        <br />
+        <br />
       </form>
     </div>
-  );
-};
-export default Create;
+  )
+}
+
+export default Create
