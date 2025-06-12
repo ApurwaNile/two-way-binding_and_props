@@ -1,15 +1,34 @@
 
 const Read = (props) => {
+
   const todos = props.todos;
   const settodos = props.settodos ;
 
+  const deleteHandler = (id) =>{
+   const filteredTodos = todos.filter( (e) => e.id != id);
+   settodos(filteredTodos);
+   
+  
+  }
+
+  const toggleCompleteHandler = (id) => {
+  const updatedTodos = todos.map(todo =>
+    todo.id === id ? { ...todo, completed: !todo.completed } : todo
+  );
+  settodos(updatedTodos);
+};
+
 let rendertodos = todos.map((todo) =>{
-return <li key={todo.id}>{todo.title}</li>
+return <li key={todo.id} className="p-4 bg-gray-800 flex justify-between items-center mb-4"><span  onClick={() => toggleCompleteHandler(todo.id)}
+        className={`text-2xl   cursor-pointer ${
+          todo.completed ? "line-through text-gray-400" : ""
+        }`}
+>{todo.title}</span> <button onClick={() =>deleteHandler(todo.id)} className="text-red-500 text-xl  ">Delete</button></li>
   });
   return (
-    <div>
+    <div className="w-[40%] p-10">
         
-      <h1>Pending Todos</h1>
+      <h1 className='text-5xl mb-10 '><span className="text-orange-500">Pending </span>Todos</h1>
       <ol>{rendertodos}</ol>
     </div>
   )
