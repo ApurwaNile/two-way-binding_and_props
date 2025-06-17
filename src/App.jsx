@@ -1,16 +1,21 @@
-import { useState } from "react";
-// import { nanoid } from "nanoid"; // Import nanoid for unique IDs
-import Create from "./components/Create";
-import Read from "./components/Read";
+import { Routes,Route } from "react-router-dom";
+import Home from "./components/Home";
+import About from "./components/About";
+import Service from "./components/Service";
+import Product from "./components/Product";
+import Nav from "./components/Nav";
+
 
 const App = () => {
-  return (
-    <div className=" text-white  font-thin h-screen w-screen  bg-zinc-900  flex p-10 ">
-      <Create  />
-      <hr />
-      <Read  />
-    </div>
-  );
+  return <div className="w-screen h-screen bg-gray-800 text-white">
+    <Nav />
+    <Routes>
+      <Route  path="/" element ={<Home/>}/>
+      <Route  path="/about" element ={<About/>}/>
+      <Route  path="/service" element ={<Service/>}/>
+      <Route  path="/product" element ={<Product/>}/>
+    </Routes>
+  </div>;
 };
 
 export default App;
